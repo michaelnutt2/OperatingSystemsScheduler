@@ -1,7 +1,7 @@
-#include "test.h"
+#include "process.h"
+#include "cpu.h"
 using namespace std;
 
 int main()
 {
-	test();
 }
