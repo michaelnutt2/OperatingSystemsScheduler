@@ -18,13 +18,7 @@ void CPU::insert_process(process p)
 
 void CPU::print_status()
 {
-  for(int i = 0; i < queue.size(); i++)
-  {
-    cout << "PID: " << queue[i].pid << endl;
-    cout << "Cycles: " << queue[i].cycles << endl;
-    cout << "Memory: " << queue[i].memory << endl;
-  }
-  cout << "Current Time: " << running_time << endl << endl;
+  cout << "Current Time: " << running_time << endl;
 }
 
 void CPU::update_time()

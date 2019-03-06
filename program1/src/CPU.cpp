@@ -8,10 +8,12 @@ CPU::CPU(int cs, int m)
   clock_speed = cs;
   memory = m;
   running_time = 0;
+  turnaround_time = 0;
 }
 
 void CPU::insert_process(process p)
 {
+  p.t_arrive = running_time;
   queue.push_back(p);
   update_time();
 }
@@ -24,10 +26,13 @@ void CPU::print_status()
     cout << "Cycles: " << queue[i].cycles << endl;
     cout << "Memory: " << queue[i].memory << endl;
   }
-  cout << "Current Time: " << running_time << endl << endl;
+  cout << "Current Time: " << running_time << endl
+       << "Turnaround Time: " << turnaround_time << endl << endl;
 }
 
 void CPU::update_time()
 {
   running_time += queue.back().cycles / clock_speed;
+  int t = running_time - queue.back().t_arrive;
+  turnaround_time += t;
 }

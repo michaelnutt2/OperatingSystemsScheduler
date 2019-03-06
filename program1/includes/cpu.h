@@ -12,9 +12,9 @@ private:
   int clock_speed;
   int memory;
   int running_time;
-  vector<int> turnaround_time;
-  int avg_turnaround;
-  // Updates time, called by insert_process
+  int turnaround_time;
+  // Updates running time and turnaround time per process
+  // called by insert_process
   void update_time();
 public:
   // Constructor, takes clock speed and memory
@@ -25,9 +25,6 @@ public:
   void print_status();
   // Returns running_time
   int get_time();
-  // Used to calculate turn around time per process, adds to turnaround_time vector
-  void calculate_turn_around();
-
 };
 
 #endif
