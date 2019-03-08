@@ -25,3 +25,8 @@ void CPU::update_time()
 {
   running_time += queue.back().cycles / clock_speed;
 }
+
+double CPU::get_time()
+{
+  return running_time;
+}

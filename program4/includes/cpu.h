@@ -23,7 +23,7 @@ public:
   // Prints current data in the object -- for testing purposes
   void print_status();
   // Returns running_time
-  int get_time();
+  double get_time();
 };
 
 #endif
