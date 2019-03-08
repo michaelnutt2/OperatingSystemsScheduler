@@ -21,5 +21,7 @@ int main(int argc, char **argv)
     cout << p.pid << " " << p.cycles << " " << p.memory << endl;
   }
 
+  fclose(f);
+
   return 0;
 }

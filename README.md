@@ -8,4 +8,4 @@ OperatingSystemsScheduler
 ```
 
 ## Running
-- To run can use `run_test.sh` to test with all 50 sample process files or use `./bin/program1 ../test_processes/output0` for one file.
+- To run can use `run_test.sh` to test with all 50 sample process files or use `./bin/program1 ../processes/output0` for one file.

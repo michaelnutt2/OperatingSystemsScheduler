@@ -1,6 +1,6 @@
 #! /bin/bash
 
-FILES="../test_processes/*"
+FILES="../processes/*"
 
 for file in $FILES;
 do
