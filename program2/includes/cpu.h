@@ -11,7 +11,7 @@ private:
   vector<process> queue;
   int clock_speed;
   int memory;
-  int running_time;
+  double running_time;
   // Updates running time
   // called by insert_process
   void update_time();

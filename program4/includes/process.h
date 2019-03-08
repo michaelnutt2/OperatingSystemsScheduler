@@ -6,8 +6,6 @@ struct process
   int pid;
   int cycles;
   int memory;
-  int t_arrive;
-  int t_complete;
 };
 
 #endif
