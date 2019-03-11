@@ -9,15 +9,16 @@ class CPU
 {
 private:
   vector<process> queue;
-  int clock_speed;
-  int memory;
+  long long int clock_speed;
+
   double running_time;
   // Updates running time
   // called by insert_process
   void update_time();
 public:
+  long long int memory;
   // Constructor, takes clock speed and memory
-  CPU(int, int);
+  CPU(long long int, long long int);
   // Adds process to the queue, needs the process structure
   void insert_process(process);
   // Prints current data in the object -- for testing purposes

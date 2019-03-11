@@ -10,13 +10,13 @@ OBJS		:= $(patsubst %.$(SRCEXT),$(OBJDIR)/%.o,$(SRCS))
 
 DEBUG		  = -g
 INCLUDES  = -I./includes
-CFLAGS	  = -Wall -pedantic -ansi -c $(DEBUG) $(INCLUDES)
-LDFLAGS		=
+CFLAGS	  = -std=c++11 -ansi -c $(DEBUG) $(INCLUDES)
+LDFLAGS		= -Wlong-long
 
 ifeq ($(SRCEXT),cpp)
 CC				= $(CXX)
 else
-CFLAGS	+= -std=gnu99
+CFLAGS	+= -std=gnu++11
 endif
 
 .PHONY: all clean distclean
