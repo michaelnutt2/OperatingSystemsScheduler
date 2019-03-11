@@ -3,7 +3,7 @@
 #include "process.h"
 using namespace std;
 
-CPU::CPU(int cs, int m)
+CPU::CPU(long long int cs, long long int m)
 {
   clock_speed = cs;
   memory = m;

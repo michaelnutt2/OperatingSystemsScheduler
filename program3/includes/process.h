@@ -4,8 +4,8 @@
 struct process
 {
   int pid;
-  int cycles;
-  int memory;
+  long long int cycles;
+  long long int memory;
 };
 
 #endif
