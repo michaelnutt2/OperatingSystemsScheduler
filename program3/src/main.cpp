@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdio.h>
+#include <algorithm>
 #include "process.h"
 #include "cpu.h"
 using namespace std;
@@ -7,8 +8,7 @@ using namespace std;
 double fifo(vector<process> queue);
 double sjf(vector<process> queue);
 double msjf(vector<process> queue);
-void merge(vector<process> *v, process l, process m, process r);
-void mergeSort(vector<process> *v, process l, process r);
+bool compareP(const process &a, const process &b);
 
 int main(int argc, char **argv)
 {
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
   fclose(f);
 
   cout << "FIFO: " << fifo(queue) << " s" << endl;
-  cout << "SJF: " << sjf(queue) << " s" << endl;
+  cout << "SJF:  " << sjf(queue) << " s" << endl;
   cout << "MSJF: " << msjf(queue) << " s" << endl << endl;
 
   return 0;
@@ -46,52 +46,67 @@ double fifo(vector<process> queue)
   CPU pD(3000000000, 1);
   CPU pE(4000000000, 1);
 
-  double current_time = 0;
+  double current_time = pA.get_time();
+  int processor = 0;
+
 
   for(int i = 0; i < 200; i++)
   {
-    if(pA.get_time() <= current_time)
+    current_time = pA.get_time();
+    processor = 0;
+
+    if(pB.get_time() < current_time)
     {
-      pA.insert_process(queue[i]);
-      i++;
-      if(pA.get_time() > current_time)
-        current_time = pA.get_time();
+      current_time = pB.get_time();
+      processor = 1;
+    }
+    else if(pC.get_time() < current_time)
+    {
+      current_time = pC.get_time();
+      processor = 2;
+    }
+    else if(pD.get_time() < current_time)
+    {
+      current_time = pD.get_time();
+      processor = 3;
+    }
+    else if(pE.get_time() < current_time)
+    {
+      current_time = pE.get_time();
+      processor = 4;
     }
 
-    if(pB.get_time() <= current_time)
+    switch(processor)
     {
-      pB.insert_process(queue[i]);
-      i++;
-      if(pB.get_time() > current_time)
-        current_time = pB.get_time();
-    }
-
-    if(pC.get_time() <= current_time)
-    {
-      pC.insert_process(queue[i]);
-      i++;
-      if(pC.get_time() > current_time)
-        current_time = pC.get_time();
-    }
-
-    if(pD.get_time() <= current_time)
-    {
-      pD.insert_process(queue[i]);
-      i++;
-      if(pD.get_time() > current_time)
-        current_time = pD.get_time();
-    }
-
-    if(pE.get_time() <= current_time)
-    {
-      pE.insert_process(queue[i]);
-      i++;
-      if(pE.get_time() > current_time)
-        current_time = pE.get_time();
+      case 0:
+      {
+        pA.insert_process(queue[i]);
+        break;
+      }
+      case 1:
+      {
+        pB.insert_process(queue[i]);
+        break;
+      }
+      case 2:
+      {
+        pC.insert_process(queue[i]);
+        break;
+      }
+      case 3:
+      {
+        pD.insert_process(queue[i]);
+        break;
+      }
+      case 4:
+      {
+        pE.insert_process(queue[i]);
+        break;
+      }
     }
   }
-  if(pA.get_time() > current_time)
-    current_time = pA.get_time();
+
+  current_time = pA.get_time();
   if(pB.get_time() > current_time)
     current_time = pB.get_time();
   if(pC.get_time() > current_time)
@@ -106,11 +121,124 @@ double fifo(vector<process> queue)
 
 double sjf(vector<process> queue)
 {
+  vector<process> sorted = queue;
+  sort(sorted.begin(), sorted.end(), compareP);
 
-  return 0;
+  return fifo(sorted);
 }
 
 double msjf(vector<process> queue)
 {
-  return 0;
+  vector<process> sorted = queue;
+  sort(sorted.begin(), sorted.end(), compareP);
+
+  CPU pA(2000000000, 1);
+  CPU pB(2000000000, 1);
+  CPU pC(3000000000, 1);
+  CPU pD(3000000000, 1);
+  CPU pE(4000000000, 1);
+  bool longestC = false;
+  bool longestD = false;
+
+  double current_time = 0;
+  int processor;
+  int i = 0;
+  int j = 199;
+
+  while(i < j)
+  {
+    current_time = pA.get_time();
+    processor = 0;
+
+    if(pB.get_time() < current_time)
+    {
+      current_time = pB.get_time();
+      processor = 1;
+    }
+    else if(pC.get_time() < current_time)
+    {
+      current_time = pC.get_time();
+      processor = 2;
+    }
+    else if(pD.get_time() < current_time)
+    {
+      current_time = pD.get_time();
+      processor = 3;
+    }
+    else if(pE.get_time() < current_time)
+    {
+      current_time = pE.get_time();
+      processor = 4;
+    }
+
+    switch(processor)
+    {
+      case 0:
+      {
+        pA.insert_process(queue[i]);
+        i++;
+        break;
+      }
+      case 1:
+      {
+        pB.insert_process(queue[i]);
+        i++;
+        break;
+      }
+      case 2:
+      {
+        if(longestC)
+        {
+          pC.insert_process(queue[j]);
+          j--;
+          longestC = false;
+        }
+        else
+        {
+          pC.insert_process(queue[i]);
+          i++;
+          longestC = true;
+        }
+        break;
+      }
+      case 3:
+      {
+        if(longestD)
+        {
+          pD.insert_process(queue[j]);
+          j--;
+          longestD = false;
+        }
+        else
+        {
+          pD.insert_process(queue[i]);
+          i++;
+          longestD = true;
+        }
+        break;
+      }
+      case 4:
+      {
+        pE.insert_process(queue[j]);
+        j--;
+        break;
+      }
+    }
+  }
+  current_time = pA.get_time();
+  if(pB.get_time() > current_time)
+    current_time = pB.get_time();
+  if(pC.get_time() > current_time)
+    current_time = pC.get_time();
+  if(pD.get_time() > current_time)
+    current_time = pD.get_time();
+  if(pE.get_time() > current_time)
+    current_time = pE.get_time();
+
+  return current_time;
+}
+
+bool compareP(const process &a, const process &b)
+{
+  return a.cycles < b.cycles;
 }

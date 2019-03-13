@@ -109,7 +109,7 @@ int main(int argc, char **argv){
       //  cout << "For CPU " << i+1 << " RUNTIME WAS " << cpu[i].get_time() << endl;
         total = total + cpu[i].get_time();
       }
-      cout << "FIFO TOTAl: " << total << endl <<endl;
+      cout << total << ",";
       total = 0;
 /*****************************************************************************/
 
@@ -169,7 +169,7 @@ int main(int argc, char **argv){
         //cout << "For CPU " << i+1 << " RUNTIME WAS " << cpu[i].get_time() << endl;
         total = total + cpu[i].get_time();
       }
-      cout << "SJF TOTAl: " << total << endl <<endl;
+      cout << total << ",";
       total = 0;
 /******************************************************************************/
 
@@ -287,10 +287,10 @@ int main(int argc, char **argv){
     //    cout << "For CPU " << i+1 << " RUNTIME WAS " << cpu[i].get_time() << endl;
         total = total + cpu[i].get_time();
       }
-  cout << "MSJF TOTAl: " << total << endl <<endl;
+  cout << total <<endl;
 
 
-    cout <<"/////////////////////////////////////////////////////////////" << endl;
+    // cout <<"/////////////////////////////////////////////////////////////" << endl;
 }
 
 
