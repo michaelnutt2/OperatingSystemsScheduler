@@ -31,9 +31,7 @@ int main(int argc, char **argv)
   }
   fclose(f);
 
-  cout << "FIFO: " << fifo(queue) << " s" << endl;
-  cout << "SJF:  " << sjf(queue) << " s" << endl;
-  cout << "MSJF: " << msjf(queue) << " s" << endl << endl;
+  cout << fifo(queue) << "," << sjf(queue) << "," << msjf(queue) << endl;
 
   return 0;
 }
