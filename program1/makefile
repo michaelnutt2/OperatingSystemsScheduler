@@ -1,4 +1,4 @@
-APP			 = program3
+APP			 = program1
 SRCEXT 	 = cpp
 SRCDIR	 = src
 OBJDIR	 = obj

@@ -284,6 +284,13 @@ INPUT OSSchedulerReport.toc
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 OUTPUT OSSchedulerReport.toc
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT Data/EqualProcessorSpeeds.png
+INPUT ./Data/EqualProcessorSpeeds.png
+INPUT ./Data/EqualProcessorSpeeds.png
+INPUT Data/EqualProcessorSpeeds.png
+INPUT ./Data/EqualProcessorSpeeds.png
+INPUT Data/EqualProcessorSpeeds.png
+INPUT ./Data/EqualProcessorSpeeds.png
 INPUT Data/VariableMemorySizesAVG.png
 INPUT ./Data/VariableMemorySizesAVG.png
 INPUT ./Data/VariableMemorySizesAVG.png

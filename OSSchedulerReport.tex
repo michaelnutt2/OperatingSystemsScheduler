@@ -67,8 +67,32 @@
 \newpage
 \section{Experimental Results}
 
+For the following experiments we generated 50 sets of 200 processes for the processors to run, each experiment using the same set of 50 processes.
+
   \subsection{All Things Equal}
 
+  This scenario had equal clock speeds across the board and the assumption that each processor would have enough memory to run the processes. From a theoretical standpoint, First In First Out and Shortest Job First should have a similar average running time as the processors are running at equal processing speeds.
+
+  \begin{figure}[h!]\CenterFloatBoxes
+  \begin{floatrow}
+    \ffigbox[\FBwidth]
+    {
+      \includegraphics[width=\linewidth]{Data/EqualProcessorSpeeds}
+    }
+    {\caption{Average running time of equal processors}}
+    \killfloatstyle\ttabbox[\Xhsize]
+    {
+      \begin{tabular}{c|c|c}
+        \textbf{FIFO} & \textbf{SJF} & \textbf{MSJF}\\
+        \hline
+        252,712 & 252,916 & 251,867\\
+      \end{tabular}
+    }
+    {\caption{Average running time of equal processors in seconds}}
+  \end{floatrow}
+  \end{figure}
+
+  As can be seen in the figures FIFO and SJF had average running times that were within 200 seconds of each other, while MSJF was faster by almost 1,000 seconds. This can be explained by the method of tackling some of the larger jobs first to ensure toward the end of the list longer jobs aren't stacked on the processors.
 
   \subsection{Variable Memory Sizes}
 
@@ -95,6 +119,7 @@
 
   As shown in Figure 1 and Table 1, in this scenario with our randomly generated processes the First In First Out and Shortest Time First algorithms produced the same total running time. The Modified Shortest Job First had the shortest run time as it balanced the load for longer processes and shorter processes, helping to prevent starvation of longer processes.
 
+  \newpage
   \subsection{Variable Processor Speeds}
 
   This scenario had the processors running at different clock speeds with memory capacities equal, with the clock speeds for $P_A$ and $P_B$ at 2 GHz, $P_C$ and $P_D$ at 3 GHz and $P_E$ at 4 GHz. This presented situations where the scheduler could more carefully analyze the clock cycles needed to match it with an appropriate speed processor for optimal performance. Because of this the Modified Shortest Job First algorithm was modified further for this scenario, instead placing all the shortest jobs on $P_A$ and $P_B$, the longest jobs on $P_E$ and alternating between a long and short job on $P_C$ and $P_D$.
@@ -122,7 +147,11 @@
 
   \subsection{All Things Equal, Processes Arrive in Order}
 
+  For this scenario we were assuming that the processes were arriving in order, limiting our approach to assigning them to the processors since we are also assuming no preemption on the processors. For this scenario the method we used was First In First Out, which yielded an average time of 252,712 seconds for processing.
+
 \section{Conclusion}
+
+After running the trials for each scenario we found that the First In First Out method was often equal to or faster than the Shortest Job First method, while our Modified Shortest Job First generated the shortest running time. These numbers do rely on the fact that we know the exact running speed of all 200 processes and that we are able to order them all the same. In a real world scenario where the processes are arriving at random times a better solution could be created by creating process priorities and allowing the scheduler to preempt processes to ensure equal time on the processor per priority level. With preemption the final scenario could have been adapted with a Modified Shortest Time Remaining that alternates with longer jobs added in to prevent starvation, and only allowing jobs to run a set amount of cycles before preempting for the next in line. 
 
 \newpage
 \begin{appendix}

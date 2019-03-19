@@ -9,6 +9,6 @@
 \contentsline {section}{\numberline {2}Experimental Results}{2}
 \contentsline {subsection}{\numberline {2.1}All Things Equal}{2}
 \contentsline {subsection}{\numberline {2.2}Variable Memory Sizes}{2}
-\contentsline {subsection}{\numberline {2.3}Variable Processor Speeds}{2}
-\contentsline {subsection}{\numberline {2.4}All Things Equal, Processes Arrive in Order}{3}
-\contentsline {section}{\numberline {3}Conclusion}{3}
+\contentsline {subsection}{\numberline {2.3}Variable Processor Speeds}{3}
+\contentsline {subsection}{\numberline {2.4}All Things Equal, Processes Arrive in Order}{4}
+\contentsline {section}{\numberline {3}Conclusion}{4}
